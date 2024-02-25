@@ -20,3 +20,4 @@
 
 - [Django Rest Framework](https://www.django-rest-framework.org/)
 - [PostgreSQL](https://www.postgresql.org/) (database)
+- [Docker](https://www.docker.com/) (containers)
