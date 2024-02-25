@@ -26,15 +26,6 @@ def register_user(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(["GET"])
-@permission_classes([IsAuthenticated])
-def show_users(request):
-    users = Users.objects.all()
-    serializer = UserShowSerializer(users, many=True)
-
-    return Response(serializer.data)
-
-
 @api_view(["DELETE"])
 @permission_classes([IsAuthenticated, IsOwner])
 def post_delete(request, pk):
@@ -58,11 +49,25 @@ def like_post(request, pk):
     return Response(serializer.data)
 
 
+class UsersList(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, pk=None):
+        if pk is not None:
+            user = Users.objects.get(pk=pk)
+            serializer = UserShowSerializer(user)
+        else:
+            users = Users.objects.all()
+            serializer = UserShowSerializer(users, many=True)
+
+        return Response(serializer.data)
+
+
 class PostsList(APIView):
     def get(self, request, pk=None):
         if pk is not None:
-            posts = Posts.objects.get(pk=pk)
-            serializer = PostSerializer(posts)
+            post = Posts.objects.get(pk=pk)
+            serializer = PostSerializer(post)
         else:
             posts = Posts.objects.all()
             serializer = PostSerializer(posts, many=True)

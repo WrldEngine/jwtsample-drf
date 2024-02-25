@@ -1,4 +1,4 @@
-# Sample rest api with JWT auth
+# Sample of rest api with JWT auth
 
 ## Deployment
 

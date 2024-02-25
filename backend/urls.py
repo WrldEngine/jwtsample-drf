@@ -6,11 +6,12 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-from jwtapp.views import register_user, show_users, PostsList, post_delete, like_post
+from jwtapp.views import register_user, PostsList, post_delete, like_post, UsersList
 
 user_patterns = [
     path("register/", register_user, name="register_user"),
-    path("show/", show_users, name="show_users"),
+    path("show/<int:pk>", UsersList.as_view(), name="show_user"),
+    path("show/", UsersList.as_view(), name="show_users"),
 ]
 
 post_patterns = [

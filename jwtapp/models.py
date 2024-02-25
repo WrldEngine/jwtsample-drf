@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class Users(AbstractUser):
-    bio_link = models.TextField(null=True)
+    bio_link = models.URLField(max_length=200, null=True)
     location = models.TextField(null=True)
 
     def __str__(self):
