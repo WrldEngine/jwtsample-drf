@@ -50,7 +50,7 @@ def like_post(request, pk):
 
 
 class UsersList(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get(self, request, pk=None):
         if pk is not None:
@@ -64,6 +64,8 @@ class UsersList(APIView):
 
 
 class PostsList(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self, request, pk=None):
         if pk is not None:
             post = Posts.objects.get(pk=pk)
@@ -74,7 +76,6 @@ class PostsList(APIView):
 
         return Response(serializer.data)
 
-    @permission_classes([IsAuthenticated])
     def post(self, request):
         request_data = request.data.copy()
         request_data["author"] = request.user.id
