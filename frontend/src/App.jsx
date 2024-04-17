@@ -1,4 +1,4 @@
-import './App.css'
+import './App.scss'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 import HomeUsersView from './endpoints/home'
@@ -12,20 +12,20 @@ function App() {
     <Router>
     <div>
       <nav>
-        <ul>
-          <li>
+        <ul className='nav-links'>
+          <li className='nav-links__item'>
             <Link to='/'>Главная</Link>
           </li>
-          <li>
+          <li className='nav-links__item'>
             <Link to='/registration'>Регистрация</Link>
           </li>
-          <li>
+          <li className='nav-links__item'>
             <Link to='/login'>Войти</Link>
           </li>
-          <li>
+          <li className='nav-links__item'>
             <Link to='/posts'>Публикации</Link>
           </li>
-          <li>
+          <li className='nav-links__item'>
             <Link to='/create_post'>Создать</Link>
           </li>
         </ul>

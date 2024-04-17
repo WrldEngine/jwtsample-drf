@@ -17,7 +17,7 @@ export default function HomeUsersView() {
     }
 
     useEffect(() => {
-        fetchData()
+        fetchData();
     }, []);
 
     return (
