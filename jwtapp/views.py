@@ -42,11 +42,13 @@ def like_post(request, pk):
 
     if request.user in post.likes.all():
         post.likes.remove(request.user)
+        liked = False
     else:
         post.likes.add(request.user)
+        liked = True
 
     serializer = PostSerializer(post)
-    return Response(serializer.data)
+    return Response({"content": serializer.data, "liked": liked})
 
 
 class UsersList(APIView):
